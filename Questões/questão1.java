@@ -5,12 +5,23 @@ import java.util.Scanner;
 
 public class questão1 {
 
-    public static void main(String args[]) {
-        ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
-        Scanner sc = new Scanner(System.in);
+    Scanner sc;
+    private ManipulaPessoa mp;
+
+
+
+    public questão1(){
+        mp = new ManipulaPessoa();
+    }
+
+
+    public void menu() {
         int op;
+        sc = new Scanner(System.in);
 
         do {
+
+
             System.out.println("\n\n\n#####################################");
             System.out.println("Digite 1 para adicionar uma pessoa: ");
             System.out.println("Digite 2 para consultar uma pessoa: ");
@@ -23,50 +34,61 @@ public class questão1 {
 
             switch (op) {
                 case 1:
-                    String endereco, nome;
-                    int telefone;
-
-                    System.out.println("Digite seu nome: ");
-                    nome = sc.nextLine();
-                    System.out.println("Digite seu endereço: ");
-                    endereco = sc.nextLine();
-
-                    System.out.println("Digite seu telefone: ");
-                    telefone = sc.nextInt();
-
-                    Pessoa p1 = new Pessoa(nome, endereco, telefone);
-                    pessoas.add(p1);
+                    cadastrarPessoa();
                     break;
 
                 case 2:
-                    String nomePessoa;
-
-                    System.out.println("Digite o nome da pessoa a ser consultada: ");
-                    nomePessoa = sc.nextLine();
-                    for (Pessoa p : pessoas) {
-                        if (nomePessoa.equals(p.nome)) {
-                            System.out.println(
-                                    "Nome = " + p.nome + ". Endereço = " + p.endereco + ". Telefone = " + p.telefone);
-                        } else {
-                            System.out.println("F");
-                        }
-                    }
+                    consultarPessoa();
                     break;
                 case 3:
-                    String nomeRemover;
-                    System.out.println("Digite o nome da pessoa que deseja excluir: ");
-                    nomeRemover = sc.nextLine();
-                    Pessoa p2 = null;
-                    for (Pessoa p : pessoas) {
-                        if (nomeRemover.equals(p.nome)) {
-                            p2 = p;
-                        }
-                    }
-                    pessoas.remove(p2);
-
+                    excluirPessoa();
+                    break;
+                case 4:
+                    System.exit(0);
+                default:
+                    System.out.println("Opção inválida");
+                    break;
             }
-
         } while (op < 4);
     }
+
+
+    public void cadastrarPessoa() {
+        String endereco, nome;
+        int telefone;
+
+        sc = new Scanner(System.in);
+        System.out.println("Digite seu nome: ");
+        nome = sc.nextLine();
+        System.out.println("Digite seu endereço: ");
+        endereco = sc.nextLine();
+        System.out.println("Digite seu telefone: ");
+        telefone = sc.nextInt();
+
+        Pessoa p1 = new Pessoa(nome, endereco, telefone);
+        mp.add(p1);
+
+    }
+
+    public void consultarPessoa() {
+        String nome;
+        sc = new Scanner(System.in);
+        System.out.println("Digite o nome da pessoa a ser consultada: ");
+        nome = sc.nextLine();
+        mp.consulta(nome);
+    }
+
+    public void excluirPessoa() {
+        String nomeRemover;
+        System.out.println("Digite o nome da pessoa que deseja excluir: ");
+        nomeRemover = sc.nextLine();
+        mp.remove(nomeRemover);
+    }
+
+    public static void main(String args[]){
+        questão1 q = new questão1();
+        q.menu();
+    }
+
 
 }
