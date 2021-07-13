@@ -9,9 +9,9 @@ public class Fibonacci {
         int j = 0;
 
 
-        int fibo[] = new int[60];
+        long fibo[] = new int[60];
          Scanner sc = new Scanner(System.in);
-         T = sc.nextInt();
+         T = sc.nextLong();
          while (j < T) {
 
          N = sc.nextInt();
