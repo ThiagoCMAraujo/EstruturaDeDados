@@ -1,4 +1,4 @@
-import java.util.List;
+// import java.util.List;
 import java.util.Scanner;
 
 class ListasDuplas {
@@ -186,6 +186,7 @@ class ListasDuplas {
                     break;
 
                 default:
+                sc.close();
                     System.exit(0);
             }
         }while(op != 0);
